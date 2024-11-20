@@ -1,12 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>WAZA CIUDAD</h1>
-</body>
-</html>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Ciudad') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <form method="POST" action="{{ route('ciudades.store') }}">
+                                @csrf
+                                <div class="mb-3">
+                                <label for="ciudad" class="form-label"></label>
+                                <input type="text" class="form-control" name="nombre_ciudad">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+
+                        <div class="col-6">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre ciudad</th>
+                                    <th scope="col">Acciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($ciudades as $ciudad)
+                                  <tr>
+                                    <th scope="row">{{ $ciudad->id_ciudad }}</th>
+                                    <td>{{ $ciudad->nombre_ciudad }}</td>
+                                    <td>
+                                    <a href="#" class="btn btn-primary">Editar</a>
+                                    <a href="#" class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                  </tr>
+                                  @endforeach
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

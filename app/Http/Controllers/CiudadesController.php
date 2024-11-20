@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ciudad;
 use Illuminate\Http\Request;
 
 class CiudadesController extends Controller
@@ -11,8 +12,8 @@ class CiudadesController extends Controller
      */
     public function index()
     {
-        return view('city.ciudad');
-
+        $ciudades = Ciudad::all();
+        return view('city.ciudad', compact('ciudades'));
     }
 
     /**
@@ -28,7 +29,8 @@ class CiudadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Ciudad::create($request->all());
+        return redirect()->back()->with('success','Ciudad creado exitosamente.');
     }
 
     /**
