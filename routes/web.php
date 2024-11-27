@@ -5,6 +5,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\DistritosController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,8 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route::resource('clientes',[ClienteController::class]);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes');
 Route::post('/clientes/create', [ClienteController::class, 'store'])->name('clientes.store');
 

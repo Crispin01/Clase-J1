@@ -54,7 +54,9 @@ class PaisController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pais = Pais::find($id);
+        $pais->update($request->all());
+        return redirect()->back()->with('success','Pais actualizado exitosamente.');
     }
 
     /**
@@ -62,6 +64,8 @@ class PaisController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pais = Pais::find($id);
+        $pais->delete();
+        return redirect()->back()->with('success','Pais actualizado exitosamente.');
     }
 }
